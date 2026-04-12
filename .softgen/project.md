@@ -7,12 +7,12 @@ Professional media production booking platform for a digital nomad videographer/
 - **Primary**: 0 0% 12% (deep charcoal #1E1E2E)
 - **Background**: 240 6% 10% (dark slate)
 - **Foreground**: 60 30% 96% (warm white)
-- **Accent**: 40 48% 58% (warm amber #C9A961)
+- **Accent**: 190 100% 50% (cyan blue #00D4FF)
 - **Muted**: 240 4% 16% (muted slate)
 - **Card**: 240 5% 14% (card surface)
 - Headings: Playfair Display (serif)
 - Body: Raleway (sans-serif)
-- Style: Cinematic luxury, ample negative space, high contrast typography
+- Style: High-tech broadcast professionalism, cyan glow effects, editing suite aesthetic
 
 ## Features
 - Hero landing with service overview
