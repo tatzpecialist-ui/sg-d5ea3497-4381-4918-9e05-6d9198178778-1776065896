@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Mail, Phone, MessageCircle, Send } from "lucide-react";
+import Link from "next/link";
 
 export function ContactSection() {
   const whatsappNumber = "639673956481";
@@ -116,9 +117,9 @@ export function ContactSection() {
             Or fill out our detailed booking form
           </p>
           <Button asChild size="lg" variant="outline" className="border-accent text-accent hover:bg-accent hover:text-accent-foreground">
-            <a href="/booking">
+            <Link href="/booking">
               Complete Booking Form
-            </a>
+            </Link>
           </Button>
         </div>
       </div>
