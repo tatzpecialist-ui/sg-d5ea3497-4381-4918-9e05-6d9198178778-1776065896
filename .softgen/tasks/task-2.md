@@ -1,6 +1,6 @@
 ---
 title: Booking & Scheduling System
-status: in_progress
+status: done
 priority: high
 type: feature
 tags: [booking, database, forms]
@@ -17,4 +17,4 @@ Database-powered booking system allowing clients to request services, select dat
 - [x] Build BookingForm component with service selection and date picker
 - [x] Create bookingService.ts for Supabase interactions
 - [x] Add booking confirmation page
-- [ ] Create admin dashboard page for viewing bookings
+- [x] Create admin dashboard page for viewing bookings
