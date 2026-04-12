@@ -1,12 +1,21 @@
-import React from 'react'
+import { Hero } from "@/components/Hero";
+import { ServicesOverview } from "@/components/ServicesOverview";
+import { PortfolioPreview } from "@/components/PortfolioPreview";
+import { SEO } from "@/components/SEO";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background flex items-center justify-center">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-foreground">Hello World</h1>
-        <p className="text-lg text-muted-foreground">This is going to be your softgen app, start by describing your project.</p>
-      </div>
-    </main>
-  )
+    <>
+      <SEO 
+        title="13 Media Works - Professional Video Production & Editing"
+        description="Remote video editing, live event coverage, documentary production, and corporate AV presentations by a digital nomad creative professional."
+        url="https://13mediaworks.com"
+      />
+      <main>
+        <Hero />
+        <ServicesOverview />
+        <PortfolioPreview />
+      </main>
+    </>
+  );
 }
