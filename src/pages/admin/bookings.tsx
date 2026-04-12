@@ -11,6 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import { SEO } from "@/components/SEO";
 import { format } from "date-fns";
 import type { Database } from "@/integrations/supabase/types";
+import { Footer } from "@/components/Footer";
 
 type Booking = Database["public"]["Tables"]["bookings"]["Row"];
 
@@ -297,6 +298,7 @@ export default function AdminBookingsPage() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

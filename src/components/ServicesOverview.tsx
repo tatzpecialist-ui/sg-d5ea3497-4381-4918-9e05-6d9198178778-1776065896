@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Film, Camera, FileVideo, Presentation, ArrowRight } from "lucide-react";
+import { Film, Video, Camera, Presentation } from "lucide-react";
 import Link from "next/link";
 
 const services = [
@@ -17,7 +17,7 @@ const services = [
     href: "/services/live-events",
   },
   {
-    icon: FileVideo,
+    icon: Video,
     title: "Documentary",
     description: "Story-driven visual narratives. From concept to final cut, bringing authentic stories to life.",
     href: "/services/documentary",
@@ -32,7 +32,7 @@ const services = [
 
 export function ServicesOverview() {
   return (
-    <section className="py-24 bg-gradient-to-b from-background to-secondary/30">
+    <section id="services" className="py-20 bg-background">
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">

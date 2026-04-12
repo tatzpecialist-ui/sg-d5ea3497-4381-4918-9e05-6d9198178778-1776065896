@@ -8,10 +8,11 @@ import Link from "next/link";
 import { bookingService } from "@/services/bookingService";
 import { SEO } from "@/components/SEO";
 import type { Database } from "@/integrations/supabase/types";
+import { Footer } from "@/components/Footer";
 
 type Booking = Database["public"]["Tables"]["bookings"]["Row"];
 
-export default function ConfirmationPage() {
+export default function BookingConfirmation() {
   const router = useRouter();
   const { id } = router.query;
   const [booking, setBooking] = useState<Booking | null>(null);
@@ -117,6 +118,7 @@ export default function ConfirmationPage() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

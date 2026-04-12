@@ -1,7 +1,9 @@
 import { Hero } from "@/components/Hero";
 import { ServicesOverview } from "@/components/ServicesOverview";
 import { PortfolioPreview } from "@/components/PortfolioPreview";
+import { ContactSection } from "@/components/ContactSection";
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
 import { SEO } from "@/components/SEO";
 
 export default function Home() {
@@ -17,7 +19,9 @@ export default function Home() {
         <Hero />
         <ServicesOverview />
         <PortfolioPreview />
+        <ContactSection />
       </main>
+      <Footer />
     </>
   );
 }

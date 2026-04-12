@@ -28,7 +28,7 @@ const featuredWork = [
 
 export function PortfolioPreview() {
   return (
-    <section className="py-24 bg-background">
+    <section id="portfolio" className="py-20 bg-muted/30">
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="font-serif text-4xl md:text-5xl font-bold mb-6">

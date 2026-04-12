@@ -5,18 +5,18 @@ import Image from "next/image";
 import { useState } from "react";
 
 export function Navigation() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
     { href: "/", label: "Home" },
-    { href: "/services", label: "Services" },
-    { href: "/portfolio", label: "Portfolio" },
-    { href: "/about", label: "About" },
-    { href: "/contact", label: "Contact" },
+    { href: "/#services", label: "Services" },
+    { href: "/#portfolio", label: "Portfolio" },
+    { href: "/#contact", label: "Contact" },
+    { href: "/booking", label: "Book Now" },
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
+    <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
       <div className="container">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
@@ -42,17 +42,11 @@ export function Navigation() {
                 {link.label}
               </Link>
             ))}
-            
-            <Link href="/booking">
-              <Button className="bg-accent hover:bg-accent/90 text-accent-foreground font-semibold">
-                Book Now
-              </Button>
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden p-2 text-foreground hover:text-accent"
           >
             <Menu className="h-6 w-6" />
@@ -60,23 +54,18 @@ export function Navigation() {
         </div>
 
         {/* Mobile Menu */}
-        {mobileMenuOpen && (
+        {isMenuOpen && (
           <div className="md:hidden border-t border-border py-4 space-y-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className="block py-2 text-sm font-medium text-muted-foreground hover:text-accent transition-colors"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => setIsMenuOpen(false)}
               >
                 {link.label}
               </Link>
             ))}
-            <Link href="/booking" onClick={() => setMobileMenuOpen(false)}>
-              <Button className="w-full bg-accent hover:bg-accent/90 text-accent-foreground font-semibold">
-                Book Now
-              </Button>
-            </Link>
           </div>
         )}
       </div>
