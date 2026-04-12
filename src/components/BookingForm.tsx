@@ -36,7 +36,6 @@ export function BookingForm() {
     project_title: "",
     project_description: "",
     budget_range: "",
-    timeline: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -63,8 +62,7 @@ export function BookingForm() {
         project_title: formData.project_title || null,
         project_description: formData.project_description || null,
         budget_range: formData.budget_range || null,
-        timeline: formData.timeline || null,
-        preferred_date: date.toISOString(),
+        preferred_start_date: date.toISOString(),
       });
 
       toast({
@@ -225,16 +223,6 @@ export function BookingForm() {
                 value={formData.budget_range}
                 onChange={(e) => handleInputChange("budget_range", e.target.value)}
                 placeholder="e.g., $5,000 - $10,000"
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="timeline">Expected Timeline</Label>
-              <Input
-                id="timeline"
-                value={formData.timeline}
-                onChange={(e) => handleInputChange("timeline", e.target.value)}
-                placeholder="e.g., 2-3 weeks"
               />
             </div>
           </div>
