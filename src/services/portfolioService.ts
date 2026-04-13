@@ -71,7 +71,7 @@ export const portfolioService = {
   },
 
   // Create portfolio item
-  async createItem(item: Omit<PortfolioInsert, "youtube_video_id" | "thumbnail_url">, youtubeUrl: string) {
+  async createItem(item: Omit<PortfolioInsert, "youtube_video_id" | "thumbnail_url" | "youtube_url">, youtubeUrl: string) {
     const videoId = extractYouTubeId(youtubeUrl);
     
     if (!videoId) {
@@ -102,7 +102,7 @@ export const portfolioService = {
   },
 
   // Update portfolio item
-  async updateItem(id: string, updates: Partial<Omit<PortfolioInsert, "youtube_video_id" | "thumbnail_url">>, youtubeUrl?: string) {
+  async updateItem(id: string, updates: Partial<Omit<PortfolioInsert, "youtube_video_id" | "thumbnail_url" | "youtube_url">>, youtubeUrl?: string) {
     let updateData: Partial<PortfolioItem> = { ...updates };
 
     // If YouTube URL is being updated, extract new video ID and thumbnail
