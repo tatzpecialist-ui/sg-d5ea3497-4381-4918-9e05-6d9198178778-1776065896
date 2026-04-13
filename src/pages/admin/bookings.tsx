@@ -12,6 +12,7 @@ import { format } from "date-fns";
 import type { Database } from "@/integrations/supabase/types";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { AdminLayout } from "@/components/AdminLayout";
 
 type Booking = Database["public"]["Tables"]["bookings"]["Row"];
 
@@ -91,24 +92,22 @@ export default function AdminBookingsPage() {
 
   if (loading) {
     return (
-      <>
-        <Navigation />
+      <AdminLayout>
         <main className="min-h-screen flex items-center justify-center">
           <Loader2 className="h-8 w-8 animate-spin text-accent" />
         </main>
-      </>
+      </AdminLayout>
     );
   }
 
   return (
-    <>
+    <AdminLayout>
       <SEO 
         title="Admin - Bookings Dashboard - 13 Media Works"
         description="Manage client bookings and project requests"
         url="https://13mediaworks.com/admin/bookings"
       />
-      <Navigation />
-      <main className="min-h-screen pt-32 pb-16 bg-gradient-to-b from-background to-secondary/30">
+      <main className="min-h-screen pt-8 pb-16 bg-gradient-to-b from-background to-secondary/30">
         <div className="container">
           <div className="flex items-center justify-between mb-8">
             <div>
@@ -196,7 +195,7 @@ export default function AdminBookingsPage() {
 
             <div>
               {selectedBooking ? (
-                <Card className="p-6 bg-card border-border sticky top-32">
+                <Card className="p-6 bg-card border-border sticky top-8">
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
                       <h3 className="font-serif text-xl font-bold">Booking Details</h3>
@@ -290,7 +289,7 @@ export default function AdminBookingsPage() {
                   </div>
                 </Card>
               ) : (
-                <Card className="p-6 bg-card border-border sticky top-32 text-center text-muted-foreground">
+                <Card className="p-6 bg-card border-border sticky top-8 text-center text-muted-foreground">
                   Select a booking to view details
                 </Card>
               )}
@@ -298,7 +297,6 @@ export default function AdminBookingsPage() {
           </div>
         </div>
       </main>
-      <Footer />
-    </>
+    </AdminLayout>
   );
 }

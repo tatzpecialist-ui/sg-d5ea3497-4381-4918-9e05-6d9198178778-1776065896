@@ -32,6 +32,7 @@ import { portfolioService, extractYouTubeId } from "@/services/portfolioService"
 import type { PortfolioItem } from "@/services/portfolioService";
 import { Plus, Pencil, Trash2, ExternalLink, Play } from "lucide-react";
 import { SEO } from "@/components/SEO";
+import { AdminLayout } from "@/components/AdminLayout";
 
 export default function PortfolioAdmin() {
   const [items, setItems] = useState<PortfolioItem[]>([]);
@@ -209,14 +210,13 @@ export default function PortfolioAdmin() {
   };
 
   return (
-    <>
+    <AdminLayout>
       <SEO
         title="Portfolio Management - 13 Media Works"
         description="Manage your portfolio showcase"
       />
-      <Navigation />
       
-      <main className="min-h-screen bg-background pt-24 pb-16">
+      <main className="min-h-screen bg-background pt-8 pb-16">
         <div className="container">
           <div className="flex items-center justify-between mb-8">
             <div>
@@ -463,6 +463,6 @@ export default function PortfolioAdmin() {
           )}
         </div>
       </main>
-    </>
+    </AdminLayout>
   );
 }
