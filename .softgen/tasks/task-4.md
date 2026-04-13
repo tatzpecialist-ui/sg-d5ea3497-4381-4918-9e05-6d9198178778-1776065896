@@ -1,6 +1,6 @@
 ---
 title: Services Detail Pages
-status: todo
+status: done
 priority: medium
 type: feature
 tags: [services, pages]
