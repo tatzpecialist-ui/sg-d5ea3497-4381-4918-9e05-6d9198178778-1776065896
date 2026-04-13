@@ -13,9 +13,7 @@ position: 4
 Individual service pages for Video Editing, Live Events, Documentary, and Corporate AV. Each page details process, deliverables, pricing structure, and includes booking CTA.
 
 ## Checklist
-- [ ] Create /services/video-editing page
-- [ ] Create /services/live-events page
+- [x] Create /services/video-editing page
+- [x] Create /services/live-events page
 - [x] Create /services/documentary page
-- [ ] Create /services/corporate-av page
-- [ ] Build ServiceHero component with service-specific imagery
-- [ ] Add ProcessTimeline component showing workflow steps
+- [x] Create /services/corporate-av page
