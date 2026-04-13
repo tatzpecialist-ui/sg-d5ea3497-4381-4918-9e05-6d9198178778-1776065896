@@ -27,6 +27,19 @@ export const bookingService = {
       throw error;
     }
 
+    // Send confirmation emails (client + admin)
+    try {
+      await fetch("/api/send-booking-confirmation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ booking: data }),
+      });
+      console.log("Confirmation emails sent successfully");
+    } catch (emailError) {
+      console.error("Failed to send confirmation emails:", emailError);
+      // Don't throw - booking was successful, email is secondary
+    }
+
     return data;
   },
 
