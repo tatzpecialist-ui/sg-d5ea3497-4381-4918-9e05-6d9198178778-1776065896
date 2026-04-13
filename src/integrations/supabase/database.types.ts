@@ -1,4 +1,4 @@
- 
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 export type Json =
   | string
   | number
@@ -17,49 +17,49 @@ export type Database = {
     Tables: {
       bookings: {
         Row: {
-          budget_range: string | null
-          client_email: string
-          client_name: string
-          client_phone: string | null
-          company_name: string | null
+          budget: string
+          company: string | null
           created_at: string | null
+          email: string
           id: string
-          preferred_end_date: string | null
-          preferred_start_date: string | null
-          project_description: string
-          project_title: string
-          service_type: string
+          message: string | null
+          name: string
+          phone: string | null
+          project_type: string
+          service: string
           status: string | null
+          timeline: string
+          updated_at: string | null
         }
         Insert: {
-          budget_range?: string | null
-          client_email: string
-          client_name: string
-          client_phone?: string | null
-          company_name?: string | null
+          budget: string
+          company?: string | null
           created_at?: string | null
+          email: string
           id?: string
-          preferred_end_date?: string | null
-          preferred_start_date?: string | null
-          project_description: string
-          project_title: string
-          service_type: string
+          message?: string | null
+          name: string
+          phone?: string | null
+          project_type: string
+          service: string
           status?: string | null
+          timeline: string
+          updated_at?: string | null
         }
         Update: {
-          budget_range?: string | null
-          client_email?: string
-          client_name?: string
-          client_phone?: string | null
-          company_name?: string | null
+          budget?: string
+          company?: string | null
           created_at?: string | null
+          email?: string
           id?: string
-          preferred_end_date?: string | null
-          preferred_start_date?: string | null
-          project_description?: string
-          project_title?: string
-          service_type?: string
+          message?: string | null
+          name?: string
+          phone?: string | null
+          project_type?: string
+          service?: string
           status?: string | null
+          timeline?: string
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -69,42 +69,42 @@ export type Database = {
           client_name: string
           created_at: string | null
           description: string | null
-          featured: boolean | null
           id: string
-          thumbnail_url: string | null
+          is_featured: boolean | null
           title: string
           updated_at: string | null
-          year: string
+          user_id: string
+          video_id: string
+          year: number
           youtube_url: string
-          youtube_video_id: string
         }
         Insert: {
           category: string
           client_name: string
           created_at?: string | null
           description?: string | null
-          featured?: boolean | null
           id?: string
-          thumbnail_url?: string | null
+          is_featured?: boolean | null
           title: string
           updated_at?: string | null
-          year: string
+          user_id: string
+          video_id: string
+          year: number
           youtube_url: string
-          youtube_video_id: string
         }
         Update: {
           category?: string
           client_name?: string
           created_at?: string | null
           description?: string | null
-          featured?: boolean | null
           id?: string
-          thumbnail_url?: string | null
+          is_featured?: boolean | null
           title?: string
           updated_at?: string | null
-          year?: string
+          user_id?: string
+          video_id?: string
+          year?: number
           youtube_url?: string
-          youtube_video_id?: string
         }
         Relationships: []
       }
