@@ -3,9 +3,12 @@ title: Booking & Scheduling System
 status: done
 priority: high
 type: feature
-tags: [booking, database, forms]
+tags:
+- booking
+- database
+- forms
 created_by: agent
-created_at: 2026-04-12T05:33:52Z
+created_at: 2026-04-12 05:33:52+00:00
 position: 2
 ---
 
