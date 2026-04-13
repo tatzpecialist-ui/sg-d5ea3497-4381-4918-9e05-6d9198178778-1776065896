@@ -63,6 +63,51 @@ export type Database = {
         }
         Relationships: []
       }
+      portfolio_items: {
+        Row: {
+          category: string
+          client_name: string
+          created_at: string | null
+          description: string | null
+          featured: boolean | null
+          id: string
+          thumbnail_url: string | null
+          title: string
+          updated_at: string | null
+          year: string
+          youtube_url: string
+          youtube_video_id: string
+        }
+        Insert: {
+          category: string
+          client_name: string
+          created_at?: string | null
+          description?: string | null
+          featured?: boolean | null
+          id?: string
+          thumbnail_url?: string | null
+          title: string
+          updated_at?: string | null
+          year: string
+          youtube_url: string
+          youtube_video_id: string
+        }
+        Update: {
+          category?: string
+          client_name?: string
+          created_at?: string | null
+          description?: string | null
+          featured?: boolean | null
+          id?: string
+          thumbnail_url?: string | null
+          title?: string
+          updated_at?: string | null
+          year?: string
+          youtube_url?: string
+          youtube_video_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
