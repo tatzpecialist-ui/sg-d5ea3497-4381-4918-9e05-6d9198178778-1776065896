@@ -53,6 +53,13 @@ export function BookingForm() {
     setIsSubmitting(true);
 
     try {
+      console.log("Submitting booking with data:", {
+        service_type: formData.service_type,
+        client_name: formData.client_name,
+        client_email: formData.client_email,
+        preferred_start_date: date.toISOString(),
+      });
+
       const booking = await bookingService.createBooking({
         service_type: formData.service_type,
         client_name: formData.client_name,
@@ -65,6 +72,8 @@ export function BookingForm() {
         preferred_start_date: date.toISOString(),
       });
 
+      console.log("Booking created successfully:", booking);
+
       toast({
         title: "Booking Submitted!",
         description: "We'll be in touch within 24 hours.",
@@ -72,7 +81,8 @@ export function BookingForm() {
 
       router.push(`/booking/confirmation?id=${booking.id}`);
     } catch (error) {
-      console.error("Booking error:", error);
+      console.error("Booking submission error:", error);
+      console.error("Error details:", JSON.stringify(error, null, 2));
       toast({
         title: "Submission Failed",
         description: "Please try again or contact us directly.",

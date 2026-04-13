@@ -6,6 +6,8 @@ type BookingInsert = Database["public"]["Tables"]["bookings"]["Insert"];
 
 export const bookingService = {
   async createBooking(booking: Omit<BookingInsert, "id" | "created_at" | "status">) {
+    console.log("bookingService.createBooking called with:", booking);
+    
     const { data, error } = await supabase
       .from("bookings")
       .insert({
@@ -15,8 +17,13 @@ export const bookingService = {
       .select()
       .single();
 
+    console.log("Supabase response:", { data, error });
+
     if (error) {
       console.error("Error creating booking:", error);
+      console.error("Error code:", error.code);
+      console.error("Error message:", error.message);
+      console.error("Error details:", error.details);
       throw error;
     }
 

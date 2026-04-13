@@ -17,8 +17,8 @@ type Booking = Database["public"]["Tables"]["bookings"]["Row"];
 
 const statusColors = {
   pending: "bg-yellow-500/20 text-yellow-300 border-yellow-500/30",
+  contacted: "bg-blue-500/20 text-blue-300 border-blue-500/30",
   confirmed: "bg-green-500/20 text-green-300 border-green-500/30",
-  in_progress: "bg-blue-500/20 text-blue-300 border-blue-500/30",
   completed: "bg-purple-500/20 text-purple-300 border-purple-500/30",
   cancelled: "bg-red-500/20 text-red-300 border-red-500/30",
 };
@@ -178,8 +178,8 @@ export default function AdminBookingsPage() {
                                 </SelectTrigger>
                                 <SelectContent>
                                   <SelectItem value="pending">Pending</SelectItem>
+                                  <SelectItem value="contacted">Contacted</SelectItem>
                                   <SelectItem value="confirmed">Confirmed</SelectItem>
-                                  <SelectItem value="in_progress">In Progress</SelectItem>
                                   <SelectItem value="completed">Completed</SelectItem>
                                   <SelectItem value="cancelled">Cancelled</SelectItem>
                                 </SelectContent>
