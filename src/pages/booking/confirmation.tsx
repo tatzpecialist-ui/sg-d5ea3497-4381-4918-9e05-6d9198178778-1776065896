@@ -82,11 +82,11 @@ export default function BookingConfirmation() {
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Service:</span>
-                      <span className="font-medium capitalize">{booking.service_type.replace("_", " ")}</span>
+                      <span className="font-medium capitalize">{booking.service.replace("_", " ")}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Contact:</span>
-                      <span className="font-medium">{booking.client_email}</span>
+                      <span className="font-medium">{booking.email}</span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">Status:</span>

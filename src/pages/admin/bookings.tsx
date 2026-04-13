@@ -150,16 +150,16 @@ export default function AdminBookingsPage() {
                           >
                             <TableCell className="font-medium">
                               <div>
-                                <div>{booking.client_name}</div>
-                                <div className="text-xs text-muted-foreground">{booking.client_email}</div>
+                                <div>{booking.name}</div>
+                                <div className="text-xs text-muted-foreground">{booking.email}</div>
                               </div>
                             </TableCell>
                             <TableCell className="capitalize">
-                              {booking.service_type.replace("_", " ")}
+                              {booking.service.replace("_", " ")}
                             </TableCell>
                             <TableCell>
-                              {booking.preferred_start_date 
-                                ? format(new Date(booking.preferred_start_date), "MMM dd, yyyy")
+                              {booking.timeline 
+                                ? format(new Date(booking.timeline), "MMM dd, yyyy")
                                 : "Not specified"}
                             </TableCell>
                             <TableCell>
@@ -213,22 +213,22 @@ export default function AdminBookingsPage() {
                       <div>
                         <div className="text-muted-foreground mb-1">Service Type</div>
                         <div className="font-medium capitalize">
-                          {selectedBooking.service_type.replace("_", " ")}
+                          {selectedBooking.service.replace("_", " ")}
                         </div>
                       </div>
 
-                      {selectedBooking.project_title && (
+                      {selectedBooking.project_type && (
                         <div>
                           <div className="text-muted-foreground mb-1">Project Title</div>
-                          <div className="font-medium">{selectedBooking.project_title}</div>
+                          <div className="font-medium">{selectedBooking.project_type}</div>
                         </div>
                       )}
 
-                      {selectedBooking.project_description && (
+                      {selectedBooking.message && (
                         <div>
                           <div className="text-muted-foreground mb-1">Project Description</div>
                           <div className="text-foreground/90 leading-relaxed">
-                            {selectedBooking.project_description}
+                            {selectedBooking.message}
                           </div>
                         </div>
                       )}
@@ -236,36 +236,36 @@ export default function AdminBookingsPage() {
                       <div className="pt-2 border-t border-border">
                         <div className="flex items-center gap-2 mb-2">
                           <Mail className="h-4 w-4 text-accent" />
-                          <a href={`mailto:${selectedBooking.client_email}`} className="hover:text-accent">
-                            {selectedBooking.client_email}
+                          <a href={`mailto:${selectedBooking.email}`} className="hover:text-accent">
+                            {selectedBooking.email}
                           </a>
                         </div>
-                        {selectedBooking.client_phone && (
+                        {selectedBooking.phone && (
                           <div className="flex items-center gap-2 mb-2">
                             <Phone className="h-4 w-4 text-accent" />
-                            <a href={`tel:${selectedBooking.client_phone}`} className="hover:text-accent">
-                              {selectedBooking.client_phone}
+                            <a href={`tel:${selectedBooking.phone}`} className="hover:text-accent">
+                              {selectedBooking.phone}
                             </a>
                           </div>
                         )}
-                        {selectedBooking.company_name && (
+                        {selectedBooking.company && (
                           <div className="flex items-center gap-2 mb-2">
                             <Building2 className="h-4 w-4 text-accent" />
-                            <span>{selectedBooking.company_name}</span>
+                            <span>{selectedBooking.company}</span>
                           </div>
                         )}
-                        {selectedBooking.preferred_start_date && (
+                        {selectedBooking.timeline && (
                           <div className="flex items-center gap-2">
                             <Calendar className="h-4 w-4 text-accent" />
-                            <span>{format(new Date(selectedBooking.preferred_start_date), "MMMM dd, yyyy")}</span>
+                            <span>{format(new Date(selectedBooking.timeline), "MMMM dd, yyyy")}</span>
                           </div>
                         )}
                       </div>
 
-                      {selectedBooking.budget_range && (
+                      {selectedBooking.budget && (
                         <div>
                           <div className="text-muted-foreground mb-1">Budget Range</div>
-                          <div className="font-medium">{selectedBooking.budget_range}</div>
+                          <div className="font-medium">{selectedBooking.budget}</div>
                         </div>
                       )}
 

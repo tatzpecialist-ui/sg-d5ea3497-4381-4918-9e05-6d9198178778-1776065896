@@ -11,7 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { portfolioService } from "@/services/portfolioService";
+import { portfolioService, getYouTubeThumbnail } from "@/services/portfolioService";
 import type { PortfolioItem } from "@/services/portfolioService";
 import { ArrowLeft, Play, X } from "lucide-react";
 import { SEO } from "@/components/SEO";
@@ -123,7 +123,7 @@ export default function Portfolio() {
                 >
                   <div className="relative aspect-video overflow-hidden rounded-lg mb-4 bg-card">
                     <img
-                      src={item.thumbnail_url || "/placeholder.jpg"}
+                      src={getYouTubeThumbnail(item.video_id)}
                       alt={item.title}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
@@ -136,7 +136,7 @@ export default function Portfolio() {
                     </div>
 
                     {/* Featured Badge */}
-                    {item.featured && (
+                    {item.is_featured && (
                       <Badge className="absolute top-3 right-3 bg-accent">
                         Featured
                       </Badge>
@@ -218,7 +218,7 @@ export default function Portfolio() {
               <iframe
                 width="100%"
                 height="100%"
-                src={`https://www.youtube.com/embed/${selectedVideo.youtube_video_id}?autoplay=1`}
+                src={`https://www.youtube.com/embed/${selectedVideo.video_id}?autoplay=1`}
                 title={selectedVideo.title}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

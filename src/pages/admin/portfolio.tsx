@@ -28,7 +28,7 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
-import { portfolioService, extractYouTubeId } from "@/services/portfolioService";
+import { portfolioService, extractYouTubeId, getYouTubeThumbnail } from "@/services/portfolioService";
 import type { PortfolioItem } from "@/services/portfolioService";
 import { Plus, Pencil, Trash2, ExternalLink, Play } from "lucide-react";
 import { SEO } from "@/components/SEO";
@@ -125,8 +125,8 @@ export default function PortfolioAdmin() {
             client_name: formData.client_name,
             category: formData.category,
             description: formData.description || null,
-            year: formData.year,
-            featured: formData.featured,
+            year: parseInt(formData.year) || new Date().getFullYear(),
+            is_featured: formData.featured,
           },
           formData.youtube_url
         );
@@ -143,8 +143,8 @@ export default function PortfolioAdmin() {
             client_name: formData.client_name,
             category: formData.category,
             description: formData.description || null,
-            year: formData.year,
-            featured: formData.featured,
+            year: parseInt(formData.year) || new Date().getFullYear(),
+            is_featured: formData.featured,
           },
           formData.youtube_url
         );
@@ -195,8 +195,8 @@ export default function PortfolioAdmin() {
       category: item.category,
       description: item.description || "",
       youtube_url: item.youtube_url,
-      year: item.year,
-      featured: item.featured || false,
+      year: item.year.toString(),
+      featured: item.is_featured || false,
     });
     setIsDialogOpen(true);
   };
@@ -437,7 +437,7 @@ export default function PortfolioAdmin() {
                 <Card key={item.id} className="group overflow-hidden">
                   <div className="relative aspect-video overflow-hidden">
                     <img
-                      src={item.thumbnail_url || "/placeholder.jpg"}
+                      src={getYouTubeThumbnail(item.video_id)}
                       alt={item.title}
                       className="w-full h-full object-cover"
                     />
@@ -451,7 +451,7 @@ export default function PortfolioAdmin() {
                         <ExternalLink className="h-5 w-5" />
                       </a>
                     </div>
-                    {item.featured && (
+                    {item.is_featured && (
                       <Badge className="absolute top-2 right-2 bg-accent">
                         Featured
                       </Badge>

@@ -79,7 +79,7 @@ export const portfolioService = {
   },
 
   // Create portfolio item
-  async createItem(item: Omit<PortfolioInsert, "youtube_video_id" | "thumbnail_url" | "youtube_url">, youtubeUrl: string) {
+  async createItem(item: Omit<PortfolioInsert, "video_id" | "youtube_url">, youtubeUrl: string) {
     console.log("[portfolioService] createItem called with:", { item, youtubeUrl });
     
     // Step 1: Validate and extract YouTube video ID
@@ -92,14 +92,13 @@ export const portfolioService = {
     }
 
     // Step 2: Generate thumbnail URL
-    const thumbnailUrl = getYouTubeThumbnail(videoId);
+    // We don't save thumbnail_url to DB anymore, we compute it on the fly
 
     // Step 3: Prepare insert data
     const insertData = {
       ...item,
       youtube_url: youtubeUrl,
-      youtube_video_id: videoId,
-      thumbnail_url: thumbnailUrl,
+      video_id: videoId,
     };
     
     console.log("[portfolioService] Prepared insert data:", insertData);
@@ -145,7 +144,7 @@ export const portfolioService = {
   },
 
   // Update portfolio item
-  async updateItem(id: string, updates: Partial<Omit<PortfolioInsert, "youtube_video_id" | "thumbnail_url" | "youtube_url">>, youtubeUrl?: string) {
+  async updateItem(id: string, updates: Partial<Omit<PortfolioInsert, "video_id" | "youtube_url">>, youtubeUrl?: string) {
     console.log("[portfolioService] updateItem called with:", { id, updates, youtubeUrl });
     
     let updateData: Partial<PortfolioItem> = { ...updates };
@@ -161,8 +160,7 @@ export const portfolioService = {
       updateData = {
         ...updateData,
         youtube_url: youtubeUrl,
-        youtube_video_id: videoId,
-        thumbnail_url: getYouTubeThumbnail(videoId),
+        video_id: videoId,
       };
     }
 

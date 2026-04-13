@@ -61,16 +61,16 @@ export function BookingForm() {
       });
 
       const booking = await bookingService.createBooking({
-        service_type: formData.service_type,
-        client_name: formData.client_name,
-        client_email: formData.client_email,
-        client_phone: formData.client_phone || null,
-        company_name: formData.company_name || null,
-        project_title: formData.project_title || null,
-        project_description: formData.project_description || null,
-        budget_range: formData.budget_range || null,
-        preferred_start_date: date.toISOString(),
-      });
+        service: formData.service_type,
+        name: formData.client_name,
+        email: formData.client_email,
+        phone: formData.client_phone || null,
+        company: formData.company_name || null,
+        project_type: formData.project_title || null,
+        message: formData.project_description || null,
+        budget: formData.budget_range || null,
+        timeline: date.toISOString(),
+      } as any);
 
       console.log("Booking created successfully:", booking);
 
