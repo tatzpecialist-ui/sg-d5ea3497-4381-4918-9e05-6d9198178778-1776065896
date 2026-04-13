@@ -124,9 +124,9 @@ export default async function handler(
       `;
 
       await resend.emails.send({
-        from: "13 Media Works <bookings@13mediaworks.com>",
-        to: booking.client_email,
-        subject: `Booking Confirmed - ${booking.service_type}`,
+        from: "13 Media Works <onboarding@resend.dev>",
+        to: [booking.client_email],
+        subject: "Booking Confirmation - 13 Media Works",
         html: clientEmailHtml,
       });
     }
@@ -210,10 +210,34 @@ export default async function handler(
 
       // Send to your admin email
       await resend.emails.send({
-        from: "13 Media Works <bookings@13mediaworks.com>",
-        to: "admin@13mediaworks.com", // Replace with your actual email
-        subject: `New Booking: ${booking.service_type} - ${booking.client_name}`,
-        html: adminEmailHtml,
+        from: "13 Media Works <onboarding@resend.dev>",
+        to: ["info@13mediaworks.com"],
+        subject: `New Booking Request from ${booking.client_name}`,
+        html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9fafb;">
+          <h2 style="color: #1f2937; margin-bottom: 20px;">New Booking Request</h2>
+          
+          <div style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+            <h3 style="color: #374151; margin-top: 0;">Client Information</h3>
+            <p><strong>Name:</strong> ${booking.client_name}</p>
+            <p><strong>Email:</strong> ${booking.client_email}</p>
+            ${booking.client_phone ? `<p><strong>Phone:</strong> ${booking.client_phone}</p>` : ""}
+            ${booking.company_name ? `<p><strong>Company:</strong> ${booking.company_name}</p>` : ""}
+            
+            <h3 style="color: #374151; margin-top: 20px;">Project Details</h3>
+            <p><strong>Service:</strong> ${booking.service_type}</p>
+            <p><strong>Preferred Date:</strong> ${formattedDate}</p>
+            ${booking.budget_range ? `<p><strong>Budget:</strong> ${booking.budget_range}</p>` : ""}
+            
+            <h3 style="color: #374151; margin-top: 20px;">Project Description</h3>
+            <p style="white-space: pre-wrap;">${booking.project_description}</p>
+          </div>
+          
+          <p style="color: #6b7280; font-size: 14px; margin-top: 20px; text-align: center;">
+            This is an automated notification from your booking system.
+          </p>
+        </div>
+      `,
       });
     }
 
