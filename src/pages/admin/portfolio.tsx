@@ -75,7 +75,14 @@ export default function PortfolioAdmin() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    console.log("[Portfolio Admin] Form submitted with data:", formData);
+
     if (!formData.title || !formData.client_name || !formData.youtube_url) {
+      console.error("[Portfolio Admin] Validation failed - missing required fields:", {
+        hasTitle: !!formData.title,
+        hasClientName: !!formData.client_name,
+        hasYoutubeUrl: !!formData.youtube_url
+      });
       toast({
         title: "Missing Information",
         description: "Please fill in all required fields",
@@ -86,7 +93,14 @@ export default function PortfolioAdmin() {
 
     // Validate YouTube URL
     const videoId = extractYouTubeId(formData.youtube_url);
+    console.log("[Portfolio Admin] YouTube URL validation:", {
+      url: formData.youtube_url,
+      extractedVideoId: videoId,
+      isValid: !!videoId
+    });
+
     if (!videoId) {
+      console.error("[Portfolio Admin] Invalid YouTube URL:", formData.youtube_url);
       toast({
         title: "Invalid YouTube URL",
         description: "Please enter a valid YouTube link",
@@ -96,9 +110,14 @@ export default function PortfolioAdmin() {
     }
 
     setIsSubmitting(true);
+    console.log("[Portfolio Admin] Starting save operation...", {
+      isEdit: !!editingItem,
+      itemId: editingItem?.id
+    });
 
     try {
       if (editingItem) {
+        console.log("[Portfolio Admin] Updating existing item:", editingItem.id);
         await portfolioService.updateItem(
           editingItem.id,
           {
@@ -111,11 +130,13 @@ export default function PortfolioAdmin() {
           },
           formData.youtube_url
         );
+        console.log("[Portfolio Admin] Update successful");
         toast({
           title: "Portfolio Updated",
           description: "Item has been updated successfully",
         });
       } else {
+        console.log("[Portfolio Admin] Creating new item");
         await portfolioService.createItem(
           {
             title: formData.title,
@@ -127,6 +148,7 @@ export default function PortfolioAdmin() {
           },
           formData.youtube_url
         );
+        console.log("[Portfolio Admin] Create successful");
         toast({
           title: "Portfolio Added",
           description: "New item has been added successfully",
@@ -137,14 +159,31 @@ export default function PortfolioAdmin() {
       resetForm();
       loadItems();
     } catch (error) {
-      console.error("Error saving portfolio item:", error);
+      console.error("[Portfolio Admin] Save operation failed:", {
+        error,
+        errorMessage: error instanceof Error ? error.message : "Unknown error",
+        errorCode: (error as any)?.code,
+        errorDetails: (error as any)?.details,
+        errorHint: (error as any)?.hint
+      });
+      
+      // Provide more specific error message
+      let errorDescription = "Failed to save portfolio item";
+      if (error instanceof Error) {
+        errorDescription = error.message;
+      }
+      if ((error as any)?.code === "42501") {
+        errorDescription = "Permission denied. Please check your authentication and try signing out and back in.";
+      }
+      
       toast({
         title: "Error",
-        description: "Failed to save portfolio item",
+        description: errorDescription,
         variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
+      console.log("[Portfolio Admin] Save operation completed");
     }
   };
 

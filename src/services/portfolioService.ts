@@ -7,6 +7,8 @@ export type PortfolioUpdate = Partial<PortfolioInsert>;
 
 // Extract YouTube video ID from various URL formats
 export function extractYouTubeId(url: string): string | null {
+  console.log("[portfolioService] Extracting YouTube ID from URL:", url);
+  
   const patterns = [
     /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\s]+)/,
     /^([a-zA-Z0-9_-]{11})$/ // Direct video ID
@@ -14,9 +16,13 @@ export function extractYouTubeId(url: string): string | null {
   
   for (const pattern of patterns) {
     const match = url.match(pattern);
-    if (match) return match[1];
+    if (match) {
+      console.log("[portfolioService] Extracted video ID:", match[1]);
+      return match[1];
+    }
   }
   
+  console.error("[portfolioService] Failed to extract YouTube ID from URL:", url);
   return null;
 }
 
@@ -27,7 +33,9 @@ export function getYouTubeThumbnail(videoId: string, quality: 'default' | 'hq' |
     hq: 'hqdefault', 
     maxres: 'maxresdefault'
   };
-  return `https://img.youtube.com/vi/${videoId}/${qualityMap[quality]}.jpg`;
+  const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/${qualityMap[quality]}.jpg`;
+  console.log("[portfolioService] Generated thumbnail URL:", thumbnailUrl);
+  return thumbnailUrl;
 }
 
 export const portfolioService = {
@@ -72,44 +80,83 @@ export const portfolioService = {
 
   // Create portfolio item
   async createItem(item: Omit<PortfolioInsert, "youtube_video_id" | "thumbnail_url" | "youtube_url">, youtubeUrl: string) {
+    console.log("[portfolioService] createItem called with:", { item, youtubeUrl });
+    
+    // Step 1: Validate and extract YouTube video ID
     const videoId = extractYouTubeId(youtubeUrl);
     
     if (!videoId) {
-      throw new Error("Invalid YouTube URL");
+      const errorMsg = "Invalid YouTube URL - could not extract video ID";
+      console.error("[portfolioService]", errorMsg);
+      throw new Error(errorMsg);
     }
 
+    // Step 2: Generate thumbnail URL
     const thumbnailUrl = getYouTubeThumbnail(videoId);
 
+    // Step 3: Prepare insert data
+    const insertData = {
+      ...item,
+      youtube_url: youtubeUrl,
+      youtube_video_id: videoId,
+      thumbnail_url: thumbnailUrl,
+    };
+    
+    console.log("[portfolioService] Prepared insert data:", insertData);
+
+    // Step 4: Check current user session
+    const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+    console.log("[portfolioService] Current session:", { 
+      hasSession: !!session, 
+      userId: session?.user?.id,
+      sessionError 
+    });
+
+    // Step 5: Execute database insert
+    console.log("[portfolioService] Executing database insert...");
     const { data, error } = await supabase
       .from("portfolio_items")
-      .insert({
-        ...item,
-        youtube_url: youtubeUrl,
-        youtube_video_id: videoId,
-        thumbnail_url: thumbnailUrl,
-      })
+      .insert(insertData)
       .select()
       .single();
 
-    console.log("Create portfolio item:", { data, error });
+    console.log("[portfolioService] Insert result:", { 
+      success: !!data,
+      data, 
+      error,
+      errorCode: error?.code,
+      errorMessage: error?.message,
+      errorDetails: error?.details,
+      errorHint: error?.hint
+    });
 
     if (error) {
-      console.error("Error creating portfolio item:", error);
+      console.error("[portfolioService] Database insert failed:", {
+        code: error.code,
+        message: error.message,
+        details: error.details,
+        hint: error.hint
+      });
       throw error;
     }
 
+    console.log("[portfolioService] Portfolio item created successfully:", data);
     return data;
   },
 
   // Update portfolio item
   async updateItem(id: string, updates: Partial<Omit<PortfolioInsert, "youtube_video_id" | "thumbnail_url" | "youtube_url">>, youtubeUrl?: string) {
+    console.log("[portfolioService] updateItem called with:", { id, updates, youtubeUrl });
+    
     let updateData: Partial<PortfolioItem> = { ...updates };
 
     // If YouTube URL is being updated, extract new video ID and thumbnail
     if (youtubeUrl) {
       const videoId = extractYouTubeId(youtubeUrl);
       if (!videoId) {
-        throw new Error("Invalid YouTube URL");
+        const errorMsg = "Invalid YouTube URL - could not extract video ID";
+        console.error("[portfolioService]", errorMsg);
+        throw new Error(errorMsg);
       }
       updateData = {
         ...updateData,
@@ -119,6 +166,17 @@ export const portfolioService = {
       };
     }
 
+    console.log("[portfolioService] Prepared update data:", updateData);
+
+    // Check current user session
+    const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+    console.log("[portfolioService] Current session:", { 
+      hasSession: !!session, 
+      userId: session?.user?.id,
+      sessionError 
+    });
+
+    console.log("[portfolioService] Executing database update...");
     const { data, error } = await supabase
       .from("portfolio_items")
       .update(updateData)
@@ -126,13 +184,27 @@ export const portfolioService = {
       .select()
       .single();
 
-    console.log("Update portfolio item:", { data, error });
+    console.log("[portfolioService] Update result:", { 
+      success: !!data,
+      data, 
+      error,
+      errorCode: error?.code,
+      errorMessage: error?.message,
+      errorDetails: error?.details,
+      errorHint: error?.hint
+    });
 
     if (error) {
-      console.error("Error updating portfolio item:", error);
+      console.error("[portfolioService] Database update failed:", {
+        code: error.code,
+        message: error.message,
+        details: error.details,
+        hint: error.hint
+      });
       throw error;
     }
 
+    console.log("[portfolioService] Portfolio item updated successfully:", data);
     return data;
   },
 
