@@ -104,6 +104,47 @@ export default function DocumentaryService() {
           </div>
         </section>
 
+        {/* From Paper to Screen Section */}
+        <section className="py-20 bg-card/30">
+          <div className="container">
+            <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
+              <div>
+                <Badge className="mb-6 bg-accent/10 text-accent border-accent/20">
+                  Our Approach
+                </Badge>
+                <h2 className="font-serif text-4xl font-bold mb-6">
+                  From Paper to Screen
+                </h2>
+                <div className="space-y-4 text-lg text-muted-foreground leading-relaxed">
+                  <p>
+                    Every powerful documentary begins long before the camera rolls. We immerse ourselves in intensive research, uncovering the heart of your story through interviews, archival exploration, and deep subject matter analysis.
+                  </p>
+                  <p>
+                    Our scriptwriting process transforms raw research into narrative architecture—crafting compelling story arcs that guide viewers through complex subjects with clarity and emotional resonance.
+                  </p>
+                  <p>
+                    During production, we capture authentic moments with cinematic precision, combining observational techniques with carefully planned sequences. In post-production, we sculpt footage into a cohesive narrative that entertains, educates, informs, and moves audiences.
+                  </p>
+                  <p className="font-semibold text-foreground">
+                    The result: documentaries that don't just tell stories—they change perspectives.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="relative">
+                <div className="aspect-[4/3] rounded-lg overflow-hidden shadow-2xl">
+                  <img 
+                    src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&h=600&fit=crop" 
+                    alt="Documentary filmmaker interviewing subject in natural light"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-accent/10 rounded-lg -z-10" />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* What We Deliver */}
         <section className="py-20 bg-background">
           <div className="container">
