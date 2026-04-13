@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -12,6 +11,7 @@ import { SEO } from "@/components/SEO";
 import { format } from "date-fns";
 import type { Database } from "@/integrations/supabase/types";
 import { Footer } from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 
 type Booking = Database["public"]["Tables"]["bookings"]["Row"];
 
@@ -29,11 +29,7 @@ export default function AdminBookingsPage() {
   const [loading, setLoading] = useState(true);
   const [selectedBooking, setSelectedBooking] = useState<Booking | null>(null);
 
-  useEffect(() => {
-    loadBookings();
-  }, []);
-
-  const loadBookings = async () => {
+  const loadBookings = useCallback(async () => {
     setLoading(true);
     try {
       const data = await bookingService.getAllBookings();
@@ -48,7 +44,11 @@ export default function AdminBookingsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    loadBookings();
+  }, [loadBookings]);
 
   const handleStatusChange = async (id: string, status: Booking["status"]) => {
     try {
