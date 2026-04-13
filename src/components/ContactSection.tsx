@@ -1,126 +1,122 @@
-import { Card } from "@/components/ui/card";
+import { Mail, Phone, MapPin, Send, Youtube } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, MessageCircle, Send } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import Link from "next/link";
 
 export function ContactSection() {
-  const whatsappNumber = "639673956481";
-  const viberNumber = "639673956481";
-  const email = "info@13mediaworks.com";
-
   return (
-    <section id="contact" className="py-20 bg-muted/30">
+    <section className="py-20 bg-gradient-to-b from-background to-secondary/30">
       <div className="container">
-        <div className="max-w-4xl mx-auto text-center mb-12">
-          <h2 className="font-serif text-3xl md:text-4xl font-bold mb-4">
-            Let's Create Something <span className="text-accent">Extraordinary</span>
+        <div className="max-w-2xl mx-auto text-center mb-12">
+          <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4">
+            Let's Create Together
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Ready to bring your vision to life? Get in touch with us today.
+          <p className="text-muted-foreground text-lg">
+            Ready to bring your vision to life? Get in touch and let's discuss your next project.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {/* Email */}
-          <Card className="p-6 bg-card border-border hover:border-accent transition-all group">
-            <div className="flex flex-col items-center text-center space-y-4">
-              <div className="h-14 w-14 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                <Mail className="h-7 w-7 text-accent" />
-              </div>
-              <div>
-                <h3 className="font-serif text-lg font-semibold mb-2">Email Us</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Send us your project details
-                </p>
-                <Button 
-                  asChild 
-                  variant="outline" 
-                  className="w-full group-hover:border-accent group-hover:text-accent"
-                >
-                  <a href={`mailto:${email}`}>
-                    <Send className="h-4 w-4 mr-2" />
-                    {email}
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {/* Contact Info */}
+          <div className="space-y-6">
+            <div className="bg-card p-6 rounded-lg border border-border">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="p-3 bg-accent/10 rounded-lg">
+                  <Mail className="h-6 w-6 text-accent" />
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1">Email</h3>
+                  <a
+                    href="mailto:contact@13mediaworks.com"
+                    className="text-muted-foreground hover:text-accent transition-colors"
+                  >
+                    contact@13mediaworks.com
                   </a>
-                </Button>
-              </div>
-            </div>
-          </Card>
-
-          {/* WhatsApp */}
-          <Card className="p-6 bg-card border-border hover:border-accent transition-all group">
-            <div className="flex flex-col items-center text-center space-y-4">
-              <div className="h-14 w-14 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                <MessageCircle className="h-7 w-7 text-accent" />
-              </div>
-              <div>
-                <h3 className="font-serif text-lg font-semibold mb-2">WhatsApp</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Quick chat for urgent inquiries
-                </p>
-                <Button 
-                  asChild 
-                  className="w-full bg-accent hover:bg-accent/90 text-accent-foreground"
-                >
-                  <a 
-                    href={`https://wa.me/${whatsappNumber}?text=Hi! I'd like to discuss a video project.`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <MessageCircle className="h-4 w-4 mr-2" />
-                    Chat on WhatsApp
-                  </a>
-                </Button>
-              </div>
-            </div>
-          </Card>
-
-          {/* Phone / Viber */}
-          <Card className="p-6 bg-card border-border hover:border-accent transition-all group">
-            <div className="flex flex-col items-center text-center space-y-4">
-              <div className="h-14 w-14 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                <Phone className="h-7 w-7 text-accent" />
-              </div>
-              <div>
-                <h3 className="font-serif text-lg font-semibold mb-2">Call / Viber</h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  Speak with us directly
-                </p>
-                <div className="space-y-2">
-                  <Button 
-                    asChild 
-                    variant="outline" 
-                    className="w-full group-hover:border-accent group-hover:text-accent"
-                  >
-                    <a href={`tel:+${whatsappNumber}`}>
-                      <Phone className="h-4 w-4 mr-2" />
-                      +{whatsappNumber}
-                    </a>
-                  </Button>
-                  <Button 
-                    asChild 
-                    variant="ghost" 
-                    size="sm"
-                    className="w-full text-accent hover:text-accent hover:bg-accent/10"
-                  >
-                    <a href={`viber://chat?number=%2B${viberNumber}`}>
-                      Open in Viber
-                    </a>
-                  </Button>
                 </div>
               </div>
             </div>
-          </Card>
-        </div>
 
-        <div className="text-center mt-12">
-          <p className="text-sm text-muted-foreground mb-4">
-            Or fill out our detailed booking form
-          </p>
-          <Button asChild size="lg" variant="outline" className="border-accent text-accent hover:bg-accent hover:text-accent-foreground">
+            <div className="bg-card p-6 rounded-lg border border-border">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="p-3 bg-accent/10 rounded-lg">
+                  <MapPin className="h-6 w-6 text-accent" />
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1">Location</h3>
+                  <p className="text-muted-foreground">
+                    Digital Nomad - Serving Clients Worldwide
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-card p-6 rounded-lg border border-border">
+              <h3 className="font-semibold mb-3">Follow My Work</h3>
+              <div className="flex gap-3">
+                <a
+                  href="https://www.youtube.com/@13mediaworks26"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 bg-accent/10 hover:bg-accent/20 rounded-lg transition-all duration-300 border border-accent/20 hover:border-accent/50 group"
+                >
+                  <Youtube className="h-5 w-5 text-accent" />
+                  <span className="text-sm font-medium group-hover:text-accent transition-colors">
+                    YouTube
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-accent/5 to-accent/10 p-6 rounded-lg border border-accent/20">
+              <h3 className="font-semibold mb-2">Response Time</h3>
+              <p className="text-muted-foreground text-sm">
+                I typically respond within 24 hours. For urgent projects, please mention it in your message.
+              </p>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="bg-card p-8 rounded-lg border border-border flex flex-col justify-center">
+            <h3 className="font-serif text-2xl font-bold mb-4">
+              Ready to Start Your Project?
+            </h3>
+            <p className="text-muted-foreground mb-6">
+              From concept to completion, I'll help you create professional media content that stands out.
+            </p>
+            <ul className="space-y-3 mb-8">
+              <li className="flex items-start gap-3">
+                <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center mt-0.5 flex-shrink-0">
+                  <div className="w-2 h-2 rounded-full bg-accent"></div>
+                </div>
+                <span className="text-sm">Professional video editing & post-production</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center mt-0.5 flex-shrink-0">
+                  <div className="w-2 h-2 rounded-full bg-accent"></div>
+                </div>
+                <span className="text-sm">Live event coverage & documentary filming</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center mt-0.5 flex-shrink-0">
+                  <div className="w-2 h-2 rounded-full bg-accent"></div>
+                </div>
+                <span className="text-sm">Corporate presentations & AV solutions</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <div className="w-5 h-5 rounded-full bg-accent/20 flex items-center justify-center mt-0.5 flex-shrink-0">
+                  <div className="w-2 h-2 rounded-full bg-accent"></div>
+                </div>
+                <span className="text-sm">Flexible remote collaboration worldwide</span>
+              </li>
+            </ul>
             <Link href="/booking">
-              Complete Booking Form
+              <Button className="w-full bg-accent hover:bg-accent/90 text-background font-semibold group">
+                <Send className="mr-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                Book a Consultation
+              </Button>
             </Link>
-          </Button>
+          </div>
         </div>
       </div>
     </section>
