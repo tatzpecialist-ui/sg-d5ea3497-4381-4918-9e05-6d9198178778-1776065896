@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Send, Youtube } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Youtube, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -63,6 +63,17 @@ export function ContactSection() {
                   <Youtube className="h-5 w-5 text-accent" />
                   <span className="text-sm font-medium group-hover:text-accent transition-colors">
                     YouTube
+                  </span>
+                </a>
+                <a
+                  href="https://www.facebook.com/13MediaWorks/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 bg-accent/10 hover:bg-accent/20 rounded-lg transition-all duration-300 border border-accent/20 hover:border-accent/50 group"
+                >
+                  <Facebook className="h-5 w-5 text-accent" />
+                  <span className="text-sm font-medium group-hover:text-accent transition-colors">
+                    Facebook
                   </span>
                 </a>
               </div>

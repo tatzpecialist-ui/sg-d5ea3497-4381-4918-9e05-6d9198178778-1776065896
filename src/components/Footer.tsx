@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Phone, MapPin, Youtube } from "lucide-react";
+import { Mail, Phone, MapPin, Youtube, Facebook } from "lucide-react";
 
 export function Footer() {
   return (
@@ -23,6 +23,15 @@ export function Footer() {
                 aria-label="YouTube Channel"
               >
                 <Youtube className="h-5 w-5" />
+              </a>
+              <a
+                href="https://www.facebook.com/13MediaWorks/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-lg bg-secondary/50 hover:bg-accent/20 hover:text-accent transition-all duration-300 border border-border/50 hover:border-accent/50"
+                aria-label="Facebook Page"
+              >
+                <Facebook className="h-5 w-5" />
               </a>
             </div>
           </div>
