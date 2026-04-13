@@ -145,6 +145,38 @@ export default function DocumentaryService() {
           </div>
         </section>
 
+        {/* Featured Documentary Sample */}
+        <section className="py-20 bg-background">
+          <div className="container">
+            <div className="max-w-5xl mx-auto">
+              <div className="text-center mb-12">
+                <Badge className="mb-6 bg-accent/10 text-accent border-accent/20">
+                  Featured Work
+                </Badge>
+                <h2 className="font-serif text-4xl font-bold mb-4">
+                  Documentary Sample
+                </h2>
+                <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                  Experience the storytelling approach and production quality that defines our documentary work.
+                </p>
+              </div>
+
+              <div className="relative aspect-video rounded-lg overflow-hidden shadow-2xl">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/rB-f37iCA6o"
+                  title="Documentary Sample"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="absolute inset-0"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* What We Deliver */}
         <section className="py-20 bg-background">
           <div className="container">
