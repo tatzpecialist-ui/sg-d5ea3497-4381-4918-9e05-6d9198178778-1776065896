@@ -15,7 +15,7 @@ Individual service pages for Video Editing, Live Events, Documentary, and Corpor
 ## Checklist
 - [ ] Create /services/video-editing page
 - [ ] Create /services/live-events page
-- [ ] Create /services/documentary page
+- [x] Create /services/documentary page
 - [ ] Create /services/corporate-av page
 - [ ] Build ServiceHero component with service-specific imagery
 - [ ] Add ProcessTimeline component showing workflow steps
