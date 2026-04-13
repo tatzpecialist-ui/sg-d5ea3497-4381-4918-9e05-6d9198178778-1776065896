@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Send, Youtube, Facebook } from "lucide-react";
+import { Mail, Phone, MapPin, Send, Youtube, Facebook, Instagram } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -53,7 +53,7 @@ export function ContactSection() {
 
             <div className="bg-card p-6 rounded-lg border border-border">
               <h3 className="font-semibold mb-3">Follow My Work</h3>
-              <div className="flex gap-3">
+              <div className="flex flex-wrap gap-3">
                 <a
                   href="https://www.youtube.com/@13mediaworks26"
                   target="_blank"
@@ -63,6 +63,17 @@ export function ContactSection() {
                   <Youtube className="h-5 w-5 text-accent" />
                   <span className="text-sm font-medium group-hover:text-accent transition-colors">
                     YouTube
+                  </span>
+                </a>
+                <a
+                  href="https://www.instagram.com/13mediawork/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 bg-accent/10 hover:bg-accent/20 rounded-lg transition-all duration-300 border border-accent/20 hover:border-accent/50 group"
+                >
+                  <Instagram className="h-5 w-5 text-accent" />
+                  <span className="text-sm font-medium group-hover:text-accent transition-colors">
+                    Instagram
                   </span>
                 </a>
                 <a
