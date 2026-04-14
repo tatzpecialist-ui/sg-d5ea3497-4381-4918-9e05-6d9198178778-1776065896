@@ -79,7 +79,7 @@ export const portfolioService = {
   },
 
   // Create portfolio item
-  async createItem(item: Omit<PortfolioInsert, "video_id" | "youtube_url">, youtubeUrl: string) {
+  async createItem(item: Omit<PortfolioInsert, "video_id" | "youtube_url" | "user_id">, youtubeUrl: string) {
     console.log("[portfolioService] createItem called with:", { item, youtubeUrl });
     
     // Step 1: Validate and extract YouTube video ID
@@ -94,15 +94,6 @@ export const portfolioService = {
     // Step 2: Generate thumbnail URL
     // We don't save thumbnail_url to DB anymore, we compute it on the fly
 
-    // Step 3: Prepare insert data
-    const insertData = {
-      ...item,
-      youtube_url: youtubeUrl,
-      video_id: videoId,
-    };
-    
-    console.log("[portfolioService] Prepared insert data:", insertData);
-
     // Step 4: Check current user session
     const { data: { session }, error: sessionError } = await supabase.auth.getSession();
     console.log("[portfolioService] Current session:", { 
@@ -110,6 +101,16 @@ export const portfolioService = {
       userId: session?.user?.id,
       sessionError 
     });
+
+    // Step 3: Prepare insert data
+    const insertData = {
+      ...item,
+      youtube_url: youtubeUrl,
+      video_id: videoId,
+      user_id: session?.user?.id,
+    } as any;
+    
+    console.log("[portfolioService] Prepared insert data:", insertData);
 
     // Step 5: Execute database insert
     console.log("[portfolioService] Executing database insert...");
@@ -144,7 +145,7 @@ export const portfolioService = {
   },
 
   // Update portfolio item
-  async updateItem(id: string, updates: Partial<Omit<PortfolioInsert, "video_id" | "youtube_url">>, youtubeUrl?: string) {
+  async updateItem(id: string, updates: Partial<Omit<PortfolioInsert, "video_id" | "youtube_url" | "user_id">>, youtubeUrl?: string) {
     console.log("[portfolioService] updateItem called with:", { id, updates, youtubeUrl });
     
     let updateData: Partial<PortfolioItem> = { ...updates };
