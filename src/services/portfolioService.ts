@@ -5,6 +5,18 @@ export type PortfolioItem = Tables<"portfolio_items">;
 export type PortfolioInsert = Omit<PortfolioItem, "id" | "created_at" | "updated_at">;
 export type PortfolioUpdate = Partial<PortfolioInsert>;
 
+// Map form category values to database format
+const categoryMap: Record<string, string> = {
+  "video-editing": "Video Editing",
+  "live-events": "Live Events",
+  "documentary": "Documentary",
+  "corporate-av": "Corporate AV"
+};
+
+function mapCategoryToDb(formCategory: string): string {
+  return categoryMap[formCategory] || formCategory;
+}
+
 // Extract YouTube video ID from various URL formats
 export function extractYouTubeId(url: string): string | null {
   console.log("[portfolioService] Extracting YouTube ID from URL:", url);
@@ -105,6 +117,7 @@ export const portfolioService = {
     // Step 3: Prepare insert data
     const insertData = {
       ...item,
+      category: mapCategoryToDb(item.category),
       youtube_url: youtubeUrl,
       video_id: videoId,
       user_id: session?.user?.id,
@@ -148,7 +161,10 @@ export const portfolioService = {
   async updateItem(id: string, updates: Partial<Omit<PortfolioInsert, "video_id" | "youtube_url" | "user_id">>, youtubeUrl?: string) {
     console.log("[portfolioService] updateItem called with:", { id, updates, youtubeUrl });
     
-    let updateData: Partial<PortfolioItem> = { ...updates };
+    let updateData: Partial<PortfolioItem> = { 
+      ...updates,
+      ...(updates.category && { category: mapCategoryToDb(updates.category) })
+    };
 
     // If YouTube URL is being updated, extract new video ID and thumbnail
     if (youtubeUrl) {
